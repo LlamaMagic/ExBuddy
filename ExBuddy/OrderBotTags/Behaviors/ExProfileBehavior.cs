@@ -10,6 +10,7 @@
     using ff14bot.Objects;
     using System.Threading.Tasks;
     using System.Windows.Media;
+    using Data;
     using TreeSharp;
 
     public abstract class ExProfileBehavior : ProfileBehavior, ILogColors

@@ -11,6 +11,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
+    using Data;
 
     public static class Condition
     {
@@ -156,6 +157,7 @@
                     if (!list.Contains(ns))
                     {
                         list.Add(ns);
+                        Logger.Instance.Info(DataLocation.SourceDirectory().FullName);
                         Logger.Instance.Info("Added namespace '{0}' to ScriptManager", ns);
                     }
                 }
