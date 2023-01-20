@@ -133,39 +133,7 @@
 
         internal static void AddNamespacesToScriptManager(params string[] param)
         {
-            var field =
-                typeof(ScriptManager).GetFields(BindingFlags.Static | BindingFlags.NonPublic)
-                    .FirstOrDefault(f => f.FieldType == typeof(List<string>));
-
-            if (field == null)
-            {
-                Logger.Instance.Error(
-                    "RebornBuddy update has moved or changed the type we are modifying, try updating ExBuddy or contact the author ExMatt.");
-                return;
-            }
-
-            try
-            {
-                var list = field.GetValue(null) as List<string>;
-                if (list == null)
-                {
-                    return;
-                }
-
-                foreach (var ns in param)
-                {
-                    if (!list.Contains(ns))
-                    {
-                        list.Add(ns);
-                        Logger.Instance.Info(DataLocation.SourceDirectory().FullName);
-                        Logger.Instance.Info("Added namespace '{0}' to ScriptManager", ns);
-                    }
-                }
-            }
-            catch
-            {
-                Logger.Instance.Error("Failed to add namespaces to ScriptManager, this can cause issues with some profiles.");
-            }
+            ScriptManager.AddNamespaces(param);
         }
 
         private static void SetPlayerNameInWindowTitle(object sender, EventArgs eventArgs)
