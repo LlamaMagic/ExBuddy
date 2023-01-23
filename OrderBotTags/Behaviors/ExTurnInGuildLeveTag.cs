@@ -164,6 +164,10 @@
                 {
                     Logger.Info(Localization.Localization.ExTurnInGuildLeve_CollectReward, WorldManager.EorzaTime);
                     SelectString.ClickSlot(index);
+					if (await Coroutine.Wait(1000, () => Talk.DialogOpen))
+					{
+						await HandleTalk();
+					}
                     await Coroutine.Yield();
                     return true;
                 }
