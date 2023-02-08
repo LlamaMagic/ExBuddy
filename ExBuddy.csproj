@@ -36,8 +36,7 @@
       <HintPath>Assembly\Clio.Localization.dll</HintPath>
     </Reference>
     <Reference Include="GreyMagic">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Assembly\GreyMagic.dll</HintPath>
+      <HintPath>..\..\GreyMagic.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -45,8 +44,7 @@
       <HintPath>Assembly\Quest Behaviors_2128501788.dll</HintPath>
     </Reference>
     <Reference Include="RebornBuddy">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Assembly\RebornBuddy.exe</HintPath>
+      <HintPath>..\..\RebornBuddy.exe</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -307,6 +305,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\..\RebornBuddy.exe">
+      <Link>RebornBuddy.exe</Link>
+    </Content>
     <Content Include="Data\msd.xml" />
     <Content Include="Data\msd_cn.xml" />
   </ItemGroup>
