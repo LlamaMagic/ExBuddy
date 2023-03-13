@@ -34,7 +34,7 @@
     //    public static int CurrentRarityOffset;
     //}
 
-    public static class GuildLeveOffsets
+    internal static class GuildLeveOffsets
     {
         [Offset("Search 88 15 ? ? ? ? 66 8B 48 06 Add 2 Read32")]
         [Offset64("Search 88 05 ? ? ? ? 0F B7 41 06 Add 2 TraceRelative")]
