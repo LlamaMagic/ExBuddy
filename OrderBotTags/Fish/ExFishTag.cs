@@ -67,6 +67,7 @@ namespace ExBuddy.OrderBotTags.Fish
 					ReleaseComposite,
 					IdenticalCastComposite,
 					MoochComposite,
+					ThaliaksFavorComposite,
 					FishCountLimitComposite,
 					InventoryFullComposite,
 					SitComposite,
@@ -645,6 +646,13 @@ namespace ExBuddy.OrderBotTags.Fish
 		[XmlAttribute("MinimumGPPatience")]
 		public int MinimumGPPatience { get; set; }
 
+		[XmlAttribute("ThaliaksFavor")]
+		public bool ThaliaksFavor { get; set; }
+
+		[DefaultValue(600)]
+		[XmlAttribute("MaximumGPThaliaksFavor")]
+		public int MaximumGPThaliaksFavor { get; set; }
+
 		[XmlAttribute("FishEyes")]
 		public bool FishEyes { get; set; }
 
@@ -862,6 +870,24 @@ namespace ExBuddy.OrderBotTags.Fish
 									Logger.Info(Localization.Localization.ExFish_Patience);
 								}),
 							new Sleep(1, 2)));
+			}
+		}
+
+		protected Composite ThaliaksFavorComposite
+		{
+			get
+			{
+				return
+					new Decorator(
+						ret => ThaliaksFavor && Core.Player.Auras.GetAuraStacksById(2778) >= 3
+							   && (FishingManager.State == FishingState.None || FishingManager.State == FishingState.PoleReady)
+							   && (ExProfileBehavior.Me.CurrentGP <= MaximumGPThaliaksFavor || (ExProfileBehavior.Me.MaxGP - ExProfileBehavior.Me.CurrentGP) > 200),
+						new Sequence(new Action(r => 
+						{
+							ActionManager.DoAction(26804, Core.Me);
+							Logger.Info("Angler's Art: {0}", Core.Player.Auras.GetAuraStacksById(2778));
+						}
+						), new Sleep(1, 2)));
 			}
 		}
 
