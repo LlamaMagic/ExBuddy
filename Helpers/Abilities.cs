@@ -104,6 +104,7 @@
                         {Ability.PowerfulHookset, 4103},
                         {Ability.Chum, 4104},
                         {Ability.PrecisionHookset, 4179},
+                        {Ability.ThaliaksFavor, 26804},
                         {Ability.FishEyes, 4105},
                         {Ability.Patience2, 4106},
                         {Ability.SharkEye, 7904},

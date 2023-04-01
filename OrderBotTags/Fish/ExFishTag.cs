@@ -879,13 +879,13 @@ namespace ExBuddy.OrderBotTags.Fish
 			{
 				return
 					new Decorator(
-						ret => ThaliaksFavor && Core.Player.Auras.GetAuraStacksById(2778) >= 3
+						ret => ThaliaksFavor && Core.Player.Auras.GetAuraStacksById(2778) >= 3 && CanDoAbility(Ability.ThaliaksFavor)
 							   && (FishingManager.State == FishingState.None || FishingManager.State == FishingState.PoleReady)
 							   && (ExProfileBehavior.Me.CurrentGP <= MaximumGPThaliaksFavor || (ExProfileBehavior.Me.MaxGP - ExProfileBehavior.Me.CurrentGP) > 200),
 						new Sequence(new Action(r => 
 						{
-							ActionManager.DoAction(26804, Core.Me);
-							Logger.Info("Angler's Art: {0}", Core.Player.Auras.GetAuraStacksById(2778));
+							DoAbility(Ability.ThaliaksFavor);
+							Logger.Info(Localization.Localization.ExFish_ThaliaksFavor);
 						}
 						), new Sleep(1, 2)));
 			}

@@ -213,6 +213,9 @@
   <data name="ExFish_Patience" xml:space="preserve">
     <value>Patience activated</value>
   </data>
+  <data name="ExFish_ThaliaksFavor" xml:space="preserve">
+    <value>Thaliak's Favor activated</value>
+  </data>
   <data name="ExFish_Release" xml:space="preserve">
     <value>Released {0}.</value>
   </data>

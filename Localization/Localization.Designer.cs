@@ -439,6 +439,15 @@ namespace ExBuddy.Localization {
         }
         
         /// <summary>
+        ///   Searches for a localized string similar to Patience activated..
+        /// </summary>
+        internal static string ExFish_ThaliaksFavor {
+            get {
+                return ResourceManager.GetString("ExFish_ThaliaksFavor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Released .
         /// </summary>
         internal static string ExFish_Release {
