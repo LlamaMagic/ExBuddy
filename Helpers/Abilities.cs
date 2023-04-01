@@ -192,6 +192,7 @@
         PrecisionHookset,
         FishEyes,
         Patience2,
+        ThaliaksFavor,
         SharkEye,
         Gig,
         GigHead,
