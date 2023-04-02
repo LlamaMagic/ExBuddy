@@ -66,18 +66,22 @@ namespace ExBuddy.OrderBotTags.Fish
 					new ExCoroutineAction(ctx => HandleCollectable(), this),
 					ReleaseComposite,
 					IdenticalCastComposite,
+					MakeshiftBaitComposite,
 					MoochComposite,
-					ThaliaksFavorComposite,
 					FishCountLimitComposite,
 					InventoryFullComposite,
 					SitComposite,
+					ThaliaksFavorComposite,
 					CollectorsGloveComposite,
 					SnaggingComposite,
 					new ExCoroutineAction(ctx => HandleCordial(), this),
+					PrizeCatchComposite,
 					PatienceComposite,
 					FishEyesComposite,
 					ChumComposite,
 					CastComposite,
+					TripleHookComposite,
+					DoubleHookComposite,
 					HookComposite));
 		}
 
@@ -460,6 +464,15 @@ namespace ExBuddy.OrderBotTags.Fish
 			}
 		}
 
+		protected bool HasPrizeCatch
+		{
+			get
+			{
+				// Gathering Prize Catch (Fishing)
+				return ExProfileBehavior.Me.HasAura(2780);
+			}
+		}
+
 		protected bool HasSnagging
 		{
 			get
@@ -645,6 +658,22 @@ namespace ExBuddy.OrderBotTags.Fish
 		[DefaultValue(600)]
 		[XmlAttribute("MinimumGPPatience")]
 		public int MinimumGPPatience { get; set; }
+
+		[XmlAttribute("PrizeCatch")]
+		public bool PrizeCatch { get; set; }
+
+		[DefaultValue(600)]
+		[XmlAttribute("MinimumGPPrizeCatch")]
+		public int MinimumGPPrizeCatch { get; set; }
+
+		[XmlAttribute("MakeshiftBait")]
+		public bool MakeshiftBait { get; set; }
+
+		[XmlAttribute("DoubleHook")]
+		public bool DoubleHook { get; set; }
+
+		[XmlAttribute("TripleHook")]
+		public bool TripleHook { get; set; }
 
 		[XmlAttribute("ThaliaksFavor")]
 		public bool ThaliaksFavor { get; set; }
@@ -860,8 +889,7 @@ namespace ExBuddy.OrderBotTags.Fish
 						ret =>
 							Patience > Ability.None
 							&& (FishingManager.State == FishingState.None || FishingManager.State == FishingState.PoleReady) && !HasPatience
-							&& CanDoAbility(Patience) &&
-							(ExProfileBehavior.Me.CurrentGP >= MinimumGPPatience || ExProfileBehavior.Me.CurrentGPPercent > 99.0f),
+							&& CanDoAbility(Patience) && (ExProfileBehavior.Me.CurrentGP >= MinimumGPPatience || ExProfileBehavior.Me.CurrentGPPercent > 99.0f),
 						new Sequence(
 							new Action(
 								r =>
@@ -873,6 +901,76 @@ namespace ExBuddy.OrderBotTags.Fish
 			}
 		}
 
+		protected Composite MakeshiftBaitComposite
+		{
+			get
+			{
+				return
+					new Decorator(
+						ret => MakeshiftBait && Core.Player.Auras.GetAuraStacksById(2778) >= 5
+							   && CanDoAbility(Ability.Mooch) && CanDoAbility(Ability.MakeshiftBait)
+							   && (FishingManager.State == FishingState.None || FishingManager.State == FishingState.PoleReady),
+						new Sequence(new Action(r => 
+						{
+							DoAbility(Ability.MakeshiftBait);
+							Logger.Info(Localization.Localization.ExFish_MakeshiftBait);
+						}
+						), new Sleep(1, 2)));
+			}
+		}
+
+		protected Composite DoubleHookComposite
+		{
+			get
+			{
+				return
+					new Decorator(
+						ret => DoubleHook && CanDoAbility(Ability.DoubleHook) && CanDoAbility(Ability.DoubleHook)
+							   && (FishingManager.State == FishingState.None || FishingManager.State == FishingState.PoleReady),
+						new Sequence(new Action(r => 
+						{
+							DoAbility(Ability.DoubleHook);
+							Logger.Info(Localization.Localization.ExFish_DoubleHook);
+						}
+						), new Sleep(1, 2)));
+			}
+		}
+
+		protected Composite TripleHookComposite
+		{
+			get
+			{
+				return
+					new Decorator(
+						ret => TripleHook && CanDoAbility(Ability.TripleHook) && CanDoAbility(Ability.TripleHook)
+							   && (FishingManager.State == FishingState.None || FishingManager.State == FishingState.PoleReady),
+						new Sequence(new Action(r => 
+						{
+							DoAbility(Ability.TripleHook);
+							Logger.Info(Localization.Localization.ExFish_TripleHook);
+						}
+						), new Sleep(1, 2)));
+			}
+		}
+
+		protected Composite PrizeCatchComposite
+		{
+			get
+			{
+				return
+					new Decorator(
+						ret => PrizeCatch && !HasPrizeCatch && ExProfileBehavior.Me.CurrentGP <= MinimumGPPrizeCatch
+							   && (MoochLevel == 0 || !CanDoAbility(Ability.Mooch)) && CanDoAbility(Ability.PrizeCatch)
+							   && (FishingManager.State == FishingState.None || FishingManager.State == FishingState.PoleReady),
+						new Sequence(new Action(r => 
+						{
+							DoAbility(Ability.PrizeCatch);
+							Logger.Info(Localization.Localization.ExFish_PrizeCatch);
+						}
+						), new Sleep(1, 2)));
+			}
+		}
+
 		protected Composite ThaliaksFavorComposite
 		{
 			get
@@ -880,8 +978,8 @@ namespace ExBuddy.OrderBotTags.Fish
 				return
 					new Decorator(
 						ret => ThaliaksFavor && Core.Player.Auras.GetAuraStacksById(2778) >= 3 && CanDoAbility(Ability.ThaliaksFavor)
-							   && (FishingManager.State == FishingState.None || FishingManager.State == FishingState.PoleReady)
-							   && (ExProfileBehavior.Me.CurrentGP <= MaximumGPThaliaksFavor || (ExProfileBehavior.Me.MaxGP - ExProfileBehavior.Me.CurrentGP) > 200),
+							   && (ExProfileBehavior.Me.CurrentGP <= MaximumGPThaliaksFavor || (ExProfileBehavior.Me.MaxGP - ExProfileBehavior.Me.CurrentGP) > 200)
+							   && (FishingManager.State == FishingState.None || FishingManager.State == FishingState.PoleReady),
 						new Sequence(new Action(r => 
 						{
 							DoAbility(Ability.ThaliaksFavor);

@@ -63,6 +63,11 @@
 			<xs:attribute name="sit" type="xs:boolean"></xs:attribute>
 			<xs:attribute name="sitRate" type="xs:float"></xs:attribute>
 			<xs:attribute name="fishEyes" type="xs:boolean"></xs:attribute>
+			<xs:attribute name="thaliaksFavor" type="xs:boolean"></xs:attribute>
+			<xs:attribute name="prizeCatch" type="xs:boolean"></xs:attribute>
+			<xs:attribute name="makeshiftBait" type="xs:boolean"></xs:attribute>
+			<xs:attribute name="doubleHook" type="xs:boolean"></xs:attribute>
+			<xs:attribute name="tripleHook" type="xs:boolean"></xs:attribute>
 		</xs:complexType>
 	</xs:element>
 	<xs:simpleType name="Abilities">
@@ -83,8 +88,13 @@
 			<xs:enumeration value="PowerfulHookset" />
 			<xs:enumeration value="Chum" />
 			<xs:enumeration value="FishEyes" />
+			<xs:enumeration value="ThaliaksFavor" />
+			<xs:enumeration value="PrizeCatch" />
+			<xs:enumeration value="MakeshiftBait" />
 			<xs:enumeration value="PrecisionHookset" />
 			<xs:enumeration value="Patience2" />
+			<xs:enumeration value="DoubleHook" />
+			<xs:enumeration value="TripleHook" />
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="VirtualKeys">

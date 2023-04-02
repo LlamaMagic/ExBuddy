@@ -448,6 +448,42 @@ namespace ExBuddy.Localization {
         }
         
         /// <summary>
+        ///   Searches for a localized string similar to Prize Catch activated..
+        /// </summary>
+        internal static string ExFish_PrizeCatch {
+            get {
+                return ResourceManager.GetString("ExFish_PrizeCatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Searches for a localized string similar to Makeshift Bait activated..
+        /// </summary>
+        internal static string ExFish_MakeshiftBait {
+            get {
+                return ResourceManager.GetString("ExFish_MakeshiftBait", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Searches for a localized string similar to Triple Hook activated..
+        /// </summary>
+        internal static string ExFish_DoubleHook {
+            get {
+                return ResourceManager.GetString("ExFish_DoubleHook", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Searches for a localized string similar to Triple Hook activated..
+        /// </summary>
+        internal static string ExFish_TripleHook {
+            get {
+                return ResourceManager.GetString("ExFish_TripleHook", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Released .
         /// </summary>
         internal static string ExFish_Release {
