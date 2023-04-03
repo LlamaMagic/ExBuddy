@@ -104,6 +104,7 @@
                         {Ability.PowerfulHookset, 4103},
                         {Ability.Chum, 4104},
                         {Ability.PrecisionHookset, 4179},
+                        {Ability.ThaliaksFavor, 26804},
                         {Ability.FishEyes, 4105},
                         {Ability.Patience2, 4106},
                         {Ability.SharkEye, 7904},
@@ -121,8 +122,9 @@
                         {Ability.SurfaceSlap, 4595},
                         {Ability.IdenticalGig, 4591},
                         {Ability.IdenticalCast, 4596},
-
-
+                        {Ability.PrizeCatch, 26806},
+                        {Ability.MakeshiftBait, 26805},
+                        {Ability.TripleHook, 27523}
                     }
                 }
             };
@@ -136,7 +138,9 @@
         TruthOfMountains = 222,
         DiscerningEye = 757,
         CollectorsGlove = 805,
-        TruthOfOceans = 1173
+        TruthOfOceans = 1173,
+        PrizeCatch = 2780,
+        MakeshiftBait = 2779
     }
 
     internal enum Ability : byte
@@ -183,6 +187,7 @@
         Quit,
         CastLight,
         Release,
+        MakeshiftBait,
         Mooch,
         Snagging,
         Patience,
@@ -191,6 +196,7 @@
         PrecisionHookset,
         FishEyes,
         Patience2,
+        ThaliaksFavor,
         SharkEye,
         Gig,
         GigHead,
@@ -205,5 +211,7 @@
         SurfaceSlap,
         IdenticalGig,
         IdenticalCast,
+        PrizeCatch,
+        TripleHook
     }
 }
