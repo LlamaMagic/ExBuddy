@@ -28,6 +28,18 @@
 						</xs:sequence>
 					</xs:complexType>
 				</xs:element>
+				<xs:element minOccurs="0" name="SurfaceSlaps">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="SurfaceSlap" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:attribute name="name" type="xs:string" use="required"></xs:attribute>
+									<xs:attribute name="action" type="SurfaceSlapAction"></xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
 				<xs:element name="FishSpots">
 					<xs:complexType>
 						<xs:sequence>
@@ -298,6 +310,16 @@
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="KeeperAction">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="DontKeep" />
+			<xs:enumeration value="KeepNq" />
+			<xs:enumeration value="KeepHq" />
+			<xs:enumeration value="KeepAll" />
+			<xs:enumeration value="Mooch" />
+			<xs:enumeration value="MoochKeepNq" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SurfaceSlapAction">
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="DontKeep" />
 			<xs:enumeration value="KeepNq" />

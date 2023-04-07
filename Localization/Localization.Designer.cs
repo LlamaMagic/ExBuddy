@@ -439,7 +439,16 @@ namespace ExBuddy.Localization {
         }
         
         /// <summary>
-        ///   Searches for a localized string similar to Patience activated..
+        ///   Searches for a localized string similar to Patience activated.
+        /// </summary>
+        internal static string ExFish_SurfaceSlap {
+            get {
+                return ResourceManager.GetString("ExFish_SurfaceSlapPatience", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Searches for a localized string similar to Thaliak's Favor activated.
         /// </summary>
         internal static string ExFish_ThaliaksFavor {
             get {
@@ -448,7 +457,7 @@ namespace ExBuddy.Localization {
         }
         
         /// <summary>
-        ///   Searches for a localized string similar to Prize Catch activated..
+        ///   Searches for a localized string similar to Prize Catch activated.
         /// </summary>
         internal static string ExFish_PrizeCatch {
             get {
@@ -457,7 +466,7 @@ namespace ExBuddy.Localization {
         }
         
         /// <summary>
-        ///   Searches for a localized string similar to Makeshift Bait activated..
+        ///   Searches for a localized string similar to Makeshift Bait activated.
         /// </summary>
         internal static string ExFish_MakeshiftBait {
             get {
@@ -466,7 +475,7 @@ namespace ExBuddy.Localization {
         }
         
         /// <summary>
-        ///   Searches for a localized string similar to Triple Hook activated..
+        ///   Searches for a localized string similar to Double Hook activated.
         /// </summary>
         internal static string ExFish_DoubleHook {
             get {
@@ -475,7 +484,7 @@ namespace ExBuddy.Localization {
         }
         
         /// <summary>
-        ///   Searches for a localized string similar to Triple Hook activated..
+        ///   Searches for a localized string similar to Triple Hook activated.
         /// </summary>
         internal static string ExFish_TripleHook {
             get {
