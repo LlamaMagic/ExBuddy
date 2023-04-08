@@ -190,6 +190,11 @@ namespace ExBuddy.OrderBotTags.Fish
 				Keepers = new List<Keeper>();
 			}
 
+			if (SurfaceSlaps == null)
+			{
+				SurfaceSlaps = new List<SurfaceSlap>();
+			}
+
 			if (Collect && Collectables == null)
 			{
 				Collectables = new List<Collectable> { new Collectable { Name = string.Empty, Value = (int)CollectabilityValue } };
@@ -576,9 +581,6 @@ namespace ExBuddy.OrderBotTags.Fish
 		[XmlElement("Keepers")]
 		public List<Keeper> Keepers { get; set; }
 
-		[XmlElement("SurfaceSlaps")]
-		public List<SurfaceSlap> SurfaceSlaps { get; set; }
-
 		[XmlElement("Collectables")]
 		public List<Collectable> Collectables { get; set; }
 
@@ -636,6 +638,13 @@ namespace ExBuddy.OrderBotTags.Fish
 		[XmlAttribute("EnableKeeper")]
 		public bool EnableKeeper { get; set; }
 
+		[DefaultValue(false)]
+		[XmlAttribute("KeepNone")]
+		public bool KeepNone { get; set; }
+
+		[XmlElement("SurfaceSlaps")]
+		public List<SurfaceSlap> SurfaceSlaps { get; set; }
+
 		[DefaultValue(true)]
 		[XmlAttribute("EnableSurfaceSlap")]
 		public bool EnableSurfaceSlap { get; set; }
@@ -643,10 +652,6 @@ namespace ExBuddy.OrderBotTags.Fish
 		[DefaultValue(300)]
 		[XmlAttribute("MinimumGPSurfaceSlap")]
 		public int MinimumGPSurfaceSlap { get; set; }
-
-		[DefaultValue(false)]
-		[XmlAttribute("KeepNone")]
-		public bool KeepNone { get; set; }
 
 		[XmlAttribute("SitRate")]
 		public float SitRate { get; set; }
@@ -1047,16 +1052,20 @@ namespace ExBuddy.OrderBotTags.Fish
 				return
 					new Decorator(
 						ret => 
-							EnableSurfaceSlap && CanDoAbility(Ability.SurfaceSlap) && (MoochLevel == 0 || !CanDoAbility(Ability.Mooch)) 
-							&& FishingManager.State == FishingState.PoleReady
-							&& (ExProfileBehavior.Me.CurrentGP >= MinimumGPSurfaceSlap || ExProfileBehavior.Me.CurrentGPPercent > 99.0f)
+							EnableSurfaceSlap && FishingManager.State == FishingState.PoleReady && CanDoAbility(Ability.SurfaceSlap)
+							// && (ExProfileBehavior.Me.CurrentGP >= MinimumGPSurfaceSlap || ExProfileBehavior.Me.CurrentGPPercent > 99.0f),
+							// && (MoochLevel == 0 || !CanDoAbility(Ability.Mooch))
 							&& SurfaceSlaps.Any(s => string.Equals(s.Name, FishResult.FishName, StringComparison.InvariantCultureIgnoreCase)),
 						new Sequence(
 							new Action(
 								r =>
 								{
 									DoAbility(Ability.SurfaceSlap);
-									Logger.Info(Localization.Localization.ExFish_SurfaceSlap);//FishResult.FishName);
+									Logger.Info(Localization.Localization.ExFish_SurfaceSlap, FishResult.FishName);
+									// foreach (var slap in SurfaceSlaps)
+									// {
+									// 	Logger.Info("SurfaceSlaps: " + Slap);
+									// }
 								}),
 							new Sleep(2, 2)));
 			}
@@ -1070,7 +1079,7 @@ namespace ExBuddy.OrderBotTags.Fish
 					new Decorator(
 						ret =>
 							checkRelease && FishingManager.State == FishingState.PoleReady && CanDoAbility(Ability.Release)
-							&& (Keepers.Count != 0 || KeepNone) && SurfaceSlaps.Count != 0,
+							&& (Keepers.Count != 0 || KeepNone),// && SurfaceSlaps.Count != 0,
 						new Sequence(
 							new Wait(
 								2,

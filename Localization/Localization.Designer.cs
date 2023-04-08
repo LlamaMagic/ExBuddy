@@ -439,11 +439,11 @@ namespace ExBuddy.Localization {
         }
         
         /// <summary>
-        ///   Searches for a localized string similar to Patience activated.
+        ///   Searches for a localized string similar to Surfaceslap activated.
         /// </summary>
         internal static string ExFish_SurfaceSlap {
             get {
-                return ResourceManager.GetString("ExFish_SurfaceSlapPatience", resourceCulture);
+                return ResourceManager.GetString("ExFish_SurfaceSlap", resourceCulture);
             }
         }
         
