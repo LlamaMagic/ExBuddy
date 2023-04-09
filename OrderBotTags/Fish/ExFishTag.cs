@@ -66,6 +66,7 @@ namespace ExBuddy.OrderBotTags.Fish
 					new ExCoroutineAction(ctx => HandleCollectable(), this),
 					ReleaseComposite,
 					IdenticalCastComposite,
+					SurfaceSlapComposite,
 					MakeshiftBaitComposite,
 					MoochComposite,
 					FishCountLimitComposite,
@@ -187,6 +188,11 @@ namespace ExBuddy.OrderBotTags.Fish
 			if (Keepers == null)
 			{
 				Keepers = new List<Keeper>();
+			}
+
+			if (SurfaceSlaps == null)
+			{
+				SurfaceSlaps = new List<SurfaceSlap>();
 			}
 
 			if (Collect && Collectables == null)
@@ -636,6 +642,17 @@ namespace ExBuddy.OrderBotTags.Fish
 		[XmlAttribute("KeepNone")]
 		public bool KeepNone { get; set; }
 
+		[XmlElement("SurfaceSlaps")]
+		public List<SurfaceSlap> SurfaceSlaps { get; set; }
+
+		[DefaultValue(true)]
+		[XmlAttribute("EnableSurfaceSlap")]
+		public bool EnableSurfaceSlap { get; set; }
+
+		[DefaultValue(300)]
+		[XmlAttribute("MinimumGPSurfaceSlap")]
+		public int MinimumGPSurfaceSlap { get; set; }
+
 		[XmlAttribute("SitRate")]
 		public float SitRate { get; set; }
 
@@ -1028,6 +1045,32 @@ namespace ExBuddy.OrderBotTags.Fish
 			}
 		}
 
+		protected Composite SurfaceSlapComposite
+		{
+			get
+			{
+				return
+					new Decorator(
+						ret => 
+							EnableSurfaceSlap && FishingManager.State == FishingState.PoleReady && CanDoAbility(Ability.SurfaceSlap)
+							// && (ExProfileBehavior.Me.CurrentGP >= MinimumGPSurfaceSlap || ExProfileBehavior.Me.CurrentGPPercent > 99.0f),
+							// && (MoochLevel == 0 || !CanDoAbility(Ability.Mooch))
+							&& SurfaceSlaps.Any(s => string.Equals(s.Name, FishResult.FishName, StringComparison.InvariantCultureIgnoreCase)),
+						new Sequence(
+							new Action(
+								r =>
+								{
+									DoAbility(Ability.SurfaceSlap);
+									Logger.Info(Localization.Localization.ExFish_SurfaceSlap, FishResult.FishName);
+									// foreach (var slap in SurfaceSlaps)
+									// {
+									// 	Logger.Info("SurfaceSlaps: " + Slap);
+									// }
+								}),
+							new Sleep(2, 2)));
+			}
+		}
+
 		protected Composite ReleaseComposite
 		{
 			get
@@ -1036,7 +1079,7 @@ namespace ExBuddy.OrderBotTags.Fish
 					new Decorator(
 						ret =>
 							checkRelease && FishingManager.State == FishingState.PoleReady && CanDoAbility(Ability.Release)
-							&& (Keepers.Count != 0 || KeepNone),
+							&& (Keepers.Count != 0 || KeepNone),// && SurfaceSlaps.Count != 0,
 						new Sequence(
 							new Wait(
 								2,

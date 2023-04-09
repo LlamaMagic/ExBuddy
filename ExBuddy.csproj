@@ -235,7 +235,9 @@
     <Compile Include="OrderBotTags\Fish\FishResult.cs" />
     <Compile Include="OrderBotTags\Fish\FishSpots\FishSpot.cs" />
     <Compile Include="OrderBotTags\Fish\Keeper.cs" />
+    <Compile Include="OrderBotTags\Fish\SurfaceSlap.cs" />
     <Compile Include="Enumerations\KeeperAction.cs" />
+    <Compile Include="Enumerations\SurfaceSlapAction.cs" />
     <Compile Include="Enumerations\VirtualKeys.cs" />
     <Compile Include="OrderBotTags\Gather\ExGatherTag.cs" />
     <Compile Include="Enumerations\GatherIncrease.cs" />
