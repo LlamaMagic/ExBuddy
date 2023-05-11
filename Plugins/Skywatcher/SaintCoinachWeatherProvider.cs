@@ -62,7 +62,21 @@
 			{621, 2408}, // The Lochs
 			{622, 2411}, // The Azim Steppe
 			{628, 2404}, // Kugane
-			{635, 2403} // Rhalgr's Reach
+			{635, 2403}, // Rhalgr's Reach
+			{813, 2400}, // Lakeland
+			{814, 2401}, // Kholusia
+			{815, 2402}, // Amh Araeng
+			{816, 2403}, // Il Mheg
+			{817, 2404}, // The Rak'tika Greatwood
+			{818, 2405}, // The Tempest
+			{956, 2406}, // Labrinthos
+			{962, 2407}, // Old Sharlayan
+			{963, 2408}, // Radz-at-Han
+			{957, 2409}, // Thavnair
+			{958, 2410}, // Garlemald
+			{959, 2411}, // Mare Lamentorum
+			{960, 2412}, // Ultima Thule
+			{961, 2413} // Elpis
 		};
 
         public bool IsEnabled { get; private set; }

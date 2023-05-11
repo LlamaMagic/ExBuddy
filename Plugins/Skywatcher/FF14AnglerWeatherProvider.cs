@@ -25,38 +25,74 @@
 
         private static readonly IDictionary<int, int> ZoneMap = new Dictionary<int, int>
         {
-            {129, 1},
-            {134, 2},
-            {135, 3},
-            {137, 4},
-            {138, 5},
-            {139, 6},
-            {180, 7},
-            {250, 8},
+            {129, 1}, // Limsa Lominsa
+            {134, 2}, // Middle La Noscea
+            {135, 3}, // Lower La Noscea
+            {137, 4}, // Eastern La Noscea
+            {138, 5}, // Western La Noscea
+            {139, 6}, // Upper La Noscea
+            {180, 7}, // Outer La Noscea
+            {250, 8}, // Wolves' en Pier
             {339, 9}, // Mist
-			{132, 10},
-            {148, 11},
-            {152, 12},
-            {153, 13},
-            {154, 14},
-            {340, 15}, // Lavender Beds
-			{130, 16},
-            {140, 17},
-            {141, 18},
-            {145, 19},
-            {146, 20},
-            {147, 21},
-            {341, 22}, // Goblet
+			{132, 10}, // Gridania
+            {148, 11}, // Central Shroud
+            {152, 12}, // East Shroud
+            {153, 13}, // South Shroud
+            {154, 14}, // North Shroud
+            {340, 15}, // The Lavender Beds
+			{130, 16}, // Ul'dah
+            {140, 17}, // Western Thanalan
+            {141, 18}, // Central Thanalan
+            {145, 19}, // Eastern Thanalan
+            {146, 20}, // Southern Thanalan
+            {147, 21}, // Northern Thanalan
+            {341, 22}, // The Goblet
+            {156, 24}, // Mor Dhona
+			{155, 23}, // Coerthas Central Highlands
 			{418, 25}, // Ishgard
-			{155, 23}, // CCH
-			{397, 26}, // CWH
-			{401, 27},
-            {402, 28},
+			{397, 26}, // Coerthas Western Highlands
+			{401, 27}, // The Sea of Clouds
+            {402, 28}, // Azys Lla
             {478, 29}, // Idyllshire
-			{398, 30}, // Forelands
-			{399, 31}, // Hinterlands
-			{400, 32}, // Churning
-			{156, 24} // Mor Dhona
+			{398, 30}, // Dravanian Forelands
+			{399, 31}, // Dravanian Hinterlands
+			{400, 32}, // The Churning Mists
+            {635, 33}, // Rhalgar's Reach
+            {612, 34}, // The Fringes
+            {620, 35}, // The Peaks
+            {621, 36}, // The Lochs
+            {628, 37}, // Kugane
+            {641, 38}, // Shirogane
+            {613, 39}, // The Ruby Sea
+            {614, 40}, // Yanxia
+            {622, 41}, // The Azim Steppe
+            //{, 42}, // Eureka Anemos
+            //{, 43}, // Eureka Pagos
+            //{, 44}, // Eureka Pyros
+            //{, 45}, // Eureka Hydatos
+            //{, 46}, // Bozjan Southern Front
+            //{, 47} // Zandor
+            //{, 48} // 
+            //{, 49} // 
+            //{, 50} // 
+            {819, 51}, // The Crystarium
+            {820, 52}, // Eulmore
+            {813, 53}, // Lakeland
+            {814, 54}, // Kholusia
+            {815, 55}, // Amh Araeng
+            {816, 56}, // Il Mheg
+            {817, 57}, // The Rak'tika Greatwood
+            {818, 58}, // The Temptest
+            {962, 59}, // Old Sharlayan
+            {956, 60}, // Labyrinthos
+            {963, 61}, // Radz-at-Han
+            {957, 62}, // Thavnair
+            {958, 63}, // Garlemald
+            {959, 64}, // Mare Lamentorum
+            {960, 65}, // Ultima Thule
+            {961, 66} // Elpis
+            //{, 1002} // Island Sanctuary
+            //{, 1003} // Elysion
 		};
 
         private static IList<WeatherResult> weatherResults;

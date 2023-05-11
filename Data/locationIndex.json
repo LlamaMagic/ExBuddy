@@ -800,4 +800,19 @@
 "2331":{"id":2331,"name":"The Arc of the Venerable"},
 "2335":{"id":2335,"name":"Seat of the Lord Commander","parentId":25,"size":4},
 "2336":{"id":2336,"name":"Ruling Chamber","parentId":25,"size":4},
-"2337":{"id":2337,"name":"Saint Endalim's Scholasticate","parentId":25,"size":4}}
+"2337":{"id":2337,"name":"Saint Endalim's Scholasticate","parentId":25,"size":4},
+"2400":{"id":2400,"name":"Lakeland"},
+"2401":{"id":2401,"name":"Kholusia"},
+"2402":{"id":2402,"name":"Amh Araeng"},
+"2403":{"id":2403,"name":"Il Mheg"},
+"2404":{"id":2404,"name":"The Rak'tika Greatwood"},
+"2405":{"id":2405,"name":"The Tempest"},
+"2406":{"id":2406,"name":"Labrinthos"},
+"2407":{"id":2407,"name":"Old Sharlayan"},
+"2408":{"id":2408,"name":"Radz-at-Han"},
+"2409":{"id":2409,"name":"Thavnair"},
+"2410":{"id":2410,"name":"Garlemald"},
+"2411":{"id":2411,"name":"Mare Lamentorum"},
+"2412":{"id":2412,"name":"Ultima Thule"},
+"2413":{"id":2413,"name":"Elpis"}
+}
