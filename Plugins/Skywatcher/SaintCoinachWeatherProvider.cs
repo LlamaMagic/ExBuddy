@@ -69,6 +69,8 @@
 			{816, 2403}, // Il Mheg
 			{817, 2404}, // The Rak'tika Greatwood
 			{818, 2405}, // The Tempest
+            {819, 819}, // The Crystarium
+            {820, 820}, // Eulmore
 			{956, 2406}, // Labrinthos
 			{962, 2407}, // Old Sharlayan
 			{963, 2408}, // Radz-at-Han
