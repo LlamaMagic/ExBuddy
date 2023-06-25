@@ -44,30 +44,21 @@ namespace ExBuddy.Plugins.EnableFlight
 
         public override void OnDisabled()
         {
-            TreeHooks.Instance.OnHooksCleared -= OnHooksCleared;
-            TreeHooks.Instance.RemoveHook("TreeStart", startCoroutine);
-            TreeHooks.Instance.RemoveHook("PoiAction", deathCoroutine);
-            TreeRoot.OnStop -= cleanup;
-            DoCleanup();
+
         }
 
         public override void OnEnabled()
         {
-            TreeHooks.Instance.AddHook("TreeStart", startCoroutine);
-            TreeHooks.Instance.AddHook("PoiAction", deathCoroutine);
-            TreeHooks.Instance.OnHooksCleared += OnHooksCleared;
+
         }
 
         public override void OnInitialize()
         {
-            startCoroutine = new ActionRunCoroutine(ctx => Start());
-            deathCoroutine = new ActionRunCoroutine(ctx => HandleDeath());
+
         }
 
         public override void OnShutdown()
         {
-            TreeRoot.OnStop -= cleanup;
-            DoCleanup();
         }
 
         private void DisposeNav()
