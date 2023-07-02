@@ -390,25 +390,33 @@ namespace ExBuddy.OrderBotTags.Fish
 			isSitting = false;
 
 			await Coroutine.Wait(5000, () => FishingManager.State == FishingState.None);
+			Logger.Info("Cordial Test1" + CordialType + missingGp);
 
 			if (missingGp >= 380 && (CordialType == CordialType.HiCordial || CordialType == CordialType.Auto))
 			{
+				Logger.Info("Cordial Test1a" + CordialType + missingGp);
 				if (await UseCordial(CordialType.HiCordial))
 				{
+					Logger.Info("Cordial Test1b" + CordialType + missingGp);
 					return true;
 				}
 			}
 
+			Logger.Info("Cordial Test2" + CordialType + missingGp);
 			if (missingGp >= 280 && (CordialType == CordialType.Cordial || CordialType == CordialType.Auto))
 			{
+				Logger.Info("Cordial Test2a" + CordialType + missingGp);
 				if (await UseCordial(CordialType.Cordial))
 				{
+					Logger.Info("Cordial Test2b" + CordialType + missingGp);
 					return true;
 				}
 			}
 
+			Logger.Info("Cordial Test3" + CordialType + missingGp);
 			if (await UseCordial(CordialType.WateredCordial))
 			{
+				Logger.Info("Cordial Test3a" + CordialType + missingGp);
 				return true;
 			}
 
