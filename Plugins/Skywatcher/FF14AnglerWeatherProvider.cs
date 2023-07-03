@@ -32,7 +32,7 @@
             {138, 5}, // Western La Noscea
             {139, 6}, // Upper La Noscea
             {180, 7}, // Outer La Noscea
-            {250, 8}, // Wolves' en Pier
+            {250, 8}, // Wolves' Den Pier
             {339, 9}, // Mist
 			{132, 10}, // Gridania
             {148, 11}, // Central Shroud
