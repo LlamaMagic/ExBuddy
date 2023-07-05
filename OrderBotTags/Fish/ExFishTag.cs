@@ -391,7 +391,7 @@ namespace ExBuddy.OrderBotTags.Fish
 
 			await Coroutine.Wait(5000, () => FishingManager.State == FishingState.None);
 
-			if (missingGp >= 380 && (CordialType == CordialType.HiCordial || CordialType == CordialType.Auto))
+			if (missingGp >= 430 && (CordialType == CordialType.HiCordial || CordialType == CordialType.Auto) && Cordial.HasHiCordials())
 			{
 				if (await UseCordial(CordialType.HiCordial))
 				{
@@ -399,7 +399,7 @@ namespace ExBuddy.OrderBotTags.Fish
 				}
 			}
 
-			if (missingGp >= 280 && (CordialType == CordialType.Cordial || CordialType == CordialType.Auto))
+			if (missingGp >= 380 && (CordialType == CordialType.Cordial || CordialType == CordialType.Auto) && Cordial.HasCordials())
 			{
 				if (await UseCordial(CordialType.Cordial))
 				{
@@ -407,9 +407,12 @@ namespace ExBuddy.OrderBotTags.Fish
 				}
 			}
 
-			if (await UseCordial(CordialType.WateredCordial))
+			if (missingGp >= 230 && (CordialType == CordialType.WateredCordial || CordialType == CordialType.Auto) && Cordial.HasWateredCordials())
 			{
-				return true;
+				if (await UseCordial(CordialType.WateredCordial))
+				{
+					return true;
+				}
 			}
 
 			return false;
