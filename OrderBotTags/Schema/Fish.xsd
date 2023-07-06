@@ -40,6 +40,30 @@
 						</xs:sequence>
 					</xs:complexType>
 				</xs:element>
+				<xs:element minOccurs="0" name="DoubleHooks">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="DoubleHook" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:attribute name="name" type="xs:string" use="required"></xs:attribute>
+									<xs:attribute name="action" type="DoubleHookAction"></xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element minOccurs="0" name="TripleHooks">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="TripleHook" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:attribute name="name" type="xs:string" use="required"></xs:attribute>
+									<xs:attribute name="action" type="TripleHookAction"></xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
 				<xs:element name="FishSpots">
 					<xs:complexType>
 						<xs:sequence>
@@ -320,6 +344,26 @@
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="SurfaceSlapAction">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="DontKeep" />
+			<xs:enumeration value="KeepNq" />
+			<xs:enumeration value="KeepHq" />
+			<xs:enumeration value="KeepAll" />
+			<xs:enumeration value="Mooch" />
+			<xs:enumeration value="MoochKeepNq" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DoubleHookAction">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="DontKeep" />
+			<xs:enumeration value="KeepNq" />
+			<xs:enumeration value="KeepHq" />
+			<xs:enumeration value="KeepAll" />
+			<xs:enumeration value="Mooch" />
+			<xs:enumeration value="MoochKeepNq" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TripleHookAction">
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="DontKeep" />
 			<xs:enumeration value="KeepNq" />

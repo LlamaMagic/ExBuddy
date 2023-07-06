@@ -81,8 +81,6 @@ namespace ExBuddy.OrderBotTags.Fish
 					FishEyesComposite,
 					ChumComposite,
 					CastComposite,
-					TripleHookComposite,
-					DoubleHookComposite,
 					HookComposite));
 		}
 
@@ -689,11 +687,11 @@ namespace ExBuddy.OrderBotTags.Fish
 		[XmlAttribute("MakeshiftBait")]
 		public bool MakeshiftBait { get; set; }
 
-		[XmlAttribute("DoubleHook")]
-		public bool DoubleHook { get; set; }
+		[XmlElement("DoubleHooks")]
+		public List<DoubleHook> DoubleHooks { get; set; }
 
-		[XmlAttribute("TripleHook")]
-		public bool TripleHook { get; set; }
+		[XmlElement("TripleHooks")]
+		public List<TripleHook> TripleHooks { get; set; }
 
 		[XmlAttribute("ThaliaksFavor")]
 		public bool ThaliaksFavor { get; set; }
@@ -907,9 +905,9 @@ namespace ExBuddy.OrderBotTags.Fish
 				return
 					new Decorator(
 						ret =>
-							Patience > Ability.None
-							&& (FishingManager.State == FishingState.None || FishingManager.State == FishingState.PoleReady) && !HasPatience
-							&& CanDoAbility(Patience) && (ExProfileBehavior.Me.CurrentGP >= MinimumGPPatience || ExProfileBehavior.Me.CurrentGPPercent > 99.0f),
+							Patience > Ability.None && !HasPatience && CanDoAbility(Patience) 
+							&& (FishingManager.State == FishingState.None || FishingManager.State == FishingState.PoleReady)
+							&& (ExProfileBehavior.Me.CurrentGP >= MinimumGPPatience || ExProfileBehavior.Me.CurrentGPPercent > 99.0f),
 						new Sequence(
 							new Action(
 								r =>
@@ -934,40 +932,6 @@ namespace ExBuddy.OrderBotTags.Fish
 						{
 							DoAbility(Ability.MakeshiftBait);
 							Logger.Info(Localization.Localization.ExFish_MakeshiftBait);
-						}
-						), new Sleep(1, 2)));
-			}
-		}
-
-		protected Composite DoubleHookComposite
-		{
-			get
-			{
-				return
-					new Decorator(
-						ret => DoubleHook && CanDoAbility(Ability.DoubleHook) && CanDoAbility(Ability.DoubleHook)
-							   && (FishingManager.State == FishingState.None || FishingManager.State == FishingState.PoleReady),
-						new Sequence(new Action(r => 
-						{
-							DoAbility(Ability.DoubleHook);
-							Logger.Info(Localization.Localization.ExFish_DoubleHook);
-						}
-						), new Sleep(1, 2)));
-			}
-		}
-
-		protected Composite TripleHookComposite
-		{
-			get
-			{
-				return
-					new Decorator(
-						ret => TripleHook && CanDoAbility(Ability.TripleHook) && CanDoAbility(Ability.TripleHook)
-							   && (FishingManager.State == FishingState.None || FishingManager.State == FishingState.PoleReady),
-						new Sequence(new Action(r => 
-						{
-							DoAbility(Ability.TripleHook);
-							Logger.Info(Localization.Localization.ExFish_TripleHook);
 						}
 						), new Sleep(1, 2)));
 			}
@@ -1056,8 +1020,6 @@ namespace ExBuddy.OrderBotTags.Fish
 					new Decorator(
 						ret => 
 							EnableSurfaceSlap && FishingManager.State == FishingState.PoleReady && CanDoAbility(Ability.SurfaceSlap)
-							// && (ExProfileBehavior.Me.CurrentGP >= MinimumGPSurfaceSlap || ExProfileBehavior.Me.CurrentGPPercent > 99.0f),
-							// && (MoochLevel == 0 || !CanDoAbility(Ability.Mooch))
 							&& SurfaceSlaps.Any(s => string.Equals(s.Name, FishResult.FishName, StringComparison.InvariantCultureIgnoreCase)),
 						new Sequence(
 							new Action(
@@ -1065,10 +1027,6 @@ namespace ExBuddy.OrderBotTags.Fish
 								{
 									DoAbility(Ability.SurfaceSlap);
 									Logger.Info(Localization.Localization.ExFish_SurfaceSlap, FishResult.FishName);
-									// foreach (var slap in SurfaceSlaps)
-									// {
-									// 	Logger.Info("SurfaceSlaps: " + Slap);
-									// }
 								}),
 							new Sleep(2, 2)));
 			}
@@ -1082,7 +1040,7 @@ namespace ExBuddy.OrderBotTags.Fish
 					new Decorator(
 						ret =>
 							checkRelease && FishingManager.State == FishingState.PoleReady && CanDoAbility(Ability.Release)
-							&& (Keepers.Count != 0 || KeepNone),// && SurfaceSlaps.Count != 0,
+							&& (Keepers.Count != 0 || KeepNone),
 						new Sequence(
 							new Wait(
 								2,
@@ -1141,6 +1099,16 @@ namespace ExBuddy.OrderBotTags.Fish
 								DoAbility(hookset);
 								Logger.Info(Localization.Localization.ExFish_TugType, tugType, hookset);
 							}
+							else if (!HasPatience && CanDoAbility(Ability.TripleHook) && TripleHooks.Any(s => string.Equals(s.Name, tugType.ToString(), StringComparison.InvariantCultureIgnoreCase)))
+							{
+								DoAbility(Ability.TripleHook);
+								Logger.Info(Localization.Localization.ExFish_TripleHook, tugType);
+							}
+							else if (!HasPatience && CanDoAbility(Ability.DoubleHook) && DoubleHooks.Any(s => string.Equals(s.Name, tugType.ToString(), StringComparison.InvariantCultureIgnoreCase)))
+							{
+								DoAbility(Ability.DoubleHook);
+								Logger.Info(Localization.Localization.ExFish_DoubleHook, tugType);
+							}
 							else
 							{
 								FishingManager.Hook();
@@ -1152,7 +1120,6 @@ namespace ExBuddy.OrderBotTags.Fish
 								fishcount++;
 							}
 
-							//							Logger.Info("Fished " + fishcount + " of " + fishlimit + " fish at this FishSpot.");
 							Logger.Info(Localization.Localization.ExFish_Fish, fishcount, fishlimit);
 						}));
 			}
