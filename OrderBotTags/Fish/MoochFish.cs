@@ -4,11 +4,11 @@ namespace ExBuddy.OrderBotTags.Fish
     using System;
     using System.ComponentModel;
 
-    [XmlElement("DoubleHook")]
-    public class DoubleHook
+    [XmlElement("MoochFish")]
+    public class MoochFish
     {
-        [XmlAttribute("TugType")]
-        public string TugType { get; set; }
+        [XmlAttribute("Name")]
+        public string Name { get; set; }
 
         public override string ToString()
         {
