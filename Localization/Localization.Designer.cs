@@ -439,15 +439,6 @@ namespace ExBuddy.Localization {
         }
         
         /// <summary>
-        ///   Searches for a localized string similar to Surfaceslap activated.
-        /// </summary>
-        internal static string ExFish_SurfaceSlap {
-            get {
-                return ResourceManager.GetString("ExFish_SurfaceSlap", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Searches for a localized string similar to Thaliak's Favor activated.
         /// </summary>
         internal static string ExFish_ThaliaksFavor {
@@ -457,11 +448,11 @@ namespace ExBuddy.Localization {
         }
         
         /// <summary>
-        ///   Searches for a localized string similar to Prize Catch activated.
+        ///   Searches for a localized string similar to Surfaceslap activated.
         /// </summary>
-        internal static string ExFish_PrizeCatch {
+        internal static string ExFish_SurfaceSlap {
             get {
-                return ResourceManager.GetString("ExFish_PrizeCatch", resourceCulture);
+                return ResourceManager.GetString("ExFish_SurfaceSlap", resourceCulture);
             }
         }
         
@@ -475,20 +466,38 @@ namespace ExBuddy.Localization {
         }
         
         /// <summary>
-        ///   Searches for a localized string similar to Double Hook activated.
+        ///   Searches for a localized string similar to Fish Eyes activated.
         /// </summary>
-        internal static string ExFish_DoubleHook {
+        internal static string ExFish_FishEyes {
             get {
-                return ResourceManager.GetString("ExFish_DoubleHook", resourceCulture);
+                return ResourceManager.GetString("ExFish_FishEyes", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Searches for a localized string similar to Triple Hook activated.
+        ///   Searches for a localized string similar to Chum activated.
         /// </summary>
-        internal static string ExFish_TripleHook {
+        internal static string ExFish_Chum {
             get {
-                return ResourceManager.GetString("ExFish_TripleHook", resourceCulture);
+                return ResourceManager.GetString("ExFish_Chum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Searches for a localized string similar to Prize Catch activated.
+        /// </summary>
+        internal static string ExFish_PrizeCatch {
+            get {
+                return ResourceManager.GetString("ExFish_PrizeCatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Searches for a localized string similar to Hook activated.
+        /// </summary>
+        internal static string ExFish_Hook {
+            get {
+                return ResourceManager.GetString("ExFish_Hook", resourceCulture);
             }
         }
         

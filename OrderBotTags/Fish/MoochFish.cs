@@ -4,8 +4,8 @@ namespace ExBuddy.OrderBotTags.Fish
     using System;
     using System.ComponentModel;
 
-    [XmlElement("SurfaceSlap")]
-    public class SurfaceSlap
+    [XmlElement("MoochFish")]
+    public class MoochFish
     {
         [XmlAttribute("Name")]
         public string Name { get; set; }

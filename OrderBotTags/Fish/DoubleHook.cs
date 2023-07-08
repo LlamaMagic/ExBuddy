@@ -4,11 +4,11 @@ namespace ExBuddy.OrderBotTags.Fish
     using System;
     using System.ComponentModel;
 
-    [XmlElement("SurfaceSlap")]
-    public class SurfaceSlap
+    [XmlElement("DoubleHook")]
+    public class DoubleHook
     {
-        [XmlAttribute("Name")]
-        public string Name { get; set; }
+        [XmlAttribute("TugType")]
+        public string TugType { get; set; }
 
         public override string ToString()
         {

@@ -213,23 +213,26 @@
   <data name="ExFish_Patience" xml:space="preserve">
     <value>Patience activated</value>
   </data>
-  <data name="ExFish_SurfaceSlap" xml:space="preserve">
-    <value>Surface Slap activated {0}</value>
-  </data>
   <data name="ExFish_ThaliaksFavor" xml:space="preserve">
-    <value>Thaliak's Favor activated</value>
+    <value>Thaliak's Favor activated. {0} Angler's Art stacks left.</value>
   </data>
-  <data name="ExFish_PrizeCatch" xml:space="preserve">
-    <value>Prize Catch activated</value>
+  <data name="ExFish_SurfaceSlap" xml:space="preserve">
+    <value>Surface Slap activated on {0}</value>
   </data>
   <data name="ExFish_MakeshiftBait" xml:space="preserve">
     <value>Makeshift Bait activated</value>
   </data>
-  <data name="ExFish_DoubleHook" xml:space="preserve">
-    <value>Double Hook activated</value>
+  <data name="ExFish_PrizeCatch" xml:space="preserve">
+    <value>Prize Catch activated</value>
   </data>
-  <data name="ExFish_TripleHook" xml:space="preserve">
-    <value>Triple Hook activated</value>
+  <data name="ExFish_FishEyes" xml:space="preserve">
+    <value>Fish Eyes activated</value>
+  </data>
+  <data name="ExFish_Chum" xml:space="preserve">
+    <value>Chum activated</value>
+  </data>
+  <data name="ExFish_Hook" xml:space="preserve">
+    <value>{0} activated on {1} tug</value>
   </data>
   <data name="ExFish_Release" xml:space="preserve">
     <value>Released {0}.</value>

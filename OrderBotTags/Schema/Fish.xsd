@@ -28,18 +28,6 @@
 						</xs:sequence>
 					</xs:complexType>
 				</xs:element>
-				<xs:element minOccurs="0" name="SurfaceSlaps">
-					<xs:complexType>
-						<xs:sequence>
-							<xs:element name="SurfaceSlap" maxOccurs="unbounded">
-								<xs:complexType>
-									<xs:attribute name="name" type="xs:string" use="required"></xs:attribute>
-									<xs:attribute name="action" type="SurfaceSlapAction"></xs:attribute>
-								</xs:complexType>
-							</xs:element>
-						</xs:sequence>
-					</xs:complexType>
-				</xs:element>
 				<xs:element name="FishSpots">
 					<xs:complexType>
 						<xs:sequence>
@@ -76,10 +64,9 @@
 			<xs:attribute name="sitRate" type="xs:float"></xs:attribute>
 			<xs:attribute name="fishEyes" type="xs:boolean"></xs:attribute>
 			<xs:attribute name="thaliaksFavor" type="xs:boolean"></xs:attribute>
-			<xs:attribute name="prizeCatch" type="xs:boolean"></xs:attribute>
+			<xs:attribute name="hooksetReverse" type="xs:boolean"></xs:attribute>
 			<xs:attribute name="makeshiftBait" type="xs:boolean"></xs:attribute>
-			<xs:attribute name="doubleHook" type="xs:boolean"></xs:attribute>
-			<xs:attribute name="tripleHook" type="xs:boolean"></xs:attribute>
+			<xs:attribute name="prizeCatch" type="xs:boolean"></xs:attribute>
 		</xs:complexType>
 	</xs:element>
 	<xs:simpleType name="Abilities">
@@ -101,12 +88,10 @@
 			<xs:enumeration value="Chum" />
 			<xs:enumeration value="FishEyes" />
 			<xs:enumeration value="ThaliaksFavor" />
-			<xs:enumeration value="PrizeCatch" />
-			<xs:enumeration value="MakeshiftBait" />
 			<xs:enumeration value="PrecisionHookset" />
 			<xs:enumeration value="Patience2" />
-			<xs:enumeration value="DoubleHook" />
-			<xs:enumeration value="TripleHook" />
+			<xs:enumeration value="MakeshiftBait" />
+			<xs:enumeration value="PrizeCatch" />
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="VirtualKeys">
@@ -310,16 +295,6 @@
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="KeeperAction">
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="DontKeep" />
-			<xs:enumeration value="KeepNq" />
-			<xs:enumeration value="KeepHq" />
-			<xs:enumeration value="KeepAll" />
-			<xs:enumeration value="Mooch" />
-			<xs:enumeration value="MoochKeepNq" />
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="SurfaceSlapAction">
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="DontKeep" />
 			<xs:enumeration value="KeepNq" />
