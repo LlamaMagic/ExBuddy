@@ -77,7 +77,7 @@
 "76":{"id":76,"rates":[{"weather":1,"rate":15},{"weather":2,"rate":60},{"weather":3,"rate":80},{"weather":4,"rate":90},{"weather":9,"rate":100}]},
 "77":{"id":77,"rates":[{"weather":7,"rate":10},{"weather":4,"rate":20},{"weather":3,"rate":40},{"weather":2,"rate":80},{"weather":1,"rate":100}]},
 "78":{"id":78,"rates":[{"weather":1,"rate":15},{"weather":2,"rate":60},{"weather":3,"rate":80},{"weather":4,"rate":90},{"weather":9,"rate":100}]},
-"79":{"id":79,"rates":[{"weather":1,"rate":10},{"weather":2,"rate":60},{"weather":3,"rate":75},{"weather":5,"rate":85},{"weather":11,"rate":100}]},
+"79":{"id":79,"rates":[{"weather":1,"rate":10},{"weather":2,"rate":60},{"weather":3,"rate":75},{"weather":4,"rate":85},{"weather":5,"rate":95},{"weather":11,"rate":100}]},
 "80":{"id":80,"rates":[{"weather":1,"rate":20},{"weather":2,"rate":60},{"weather":3,"rate":80},{"weather":4,"rate":90},{"weather":10,"rate":100}]},
 "81":{"id":81,"rates":[{"weather":9,"rate":10},{"weather":5,"rate":20},{"weather":3,"rate":35},{"weather":2,"rate":75},{"weather":1,"rate":100}]},
 "82":{"id":82,"rates":[{"weather":8,"rate":5},{"weather":7,"rate":15},{"weather":4,"rate":25},{"weather":3,"rate":40},{"weather":2,"rate":80},{"weather":1,"rate":100}]},
