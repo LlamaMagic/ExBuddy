@@ -34,6 +34,6 @@
             return keeper.Action.HasFlag(KeeperAction.KeepNq) || IsHighQuality;
         }
 
-        public bool ShouldMooch(Keeper keeper) => keeper.Action.HasFlag((KeeperAction)0x04);
+        public bool ShouldMooch(Keeper keeper) => keeper.Action.HasFlag((KeeperAction)0x06);
     }
 }

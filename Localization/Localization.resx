@@ -193,10 +193,10 @@
     <value>Error: '{0}' is not considered bait.</value>
   </data>
   <data name="ExFish_Mooch" xml:space="preserve">
-    <value>Mooching, this is mooch {0} of {1} mooches.</value>
+    <value>Mooching with {0}, this is mooch {1} of {2} mooches.</value>
   </data>
   <data name="ExFish_Mooch2" xml:space="preserve">
-    <value>Mooching, this will be the only mooch.</value>
+    <value>Mooching with {0}, this will be the only mooch.</value>
   </data>
   <data name="ExFish_NoCordial" xml:space="preserve">
     <value>No Cordial available, buy more </value>
