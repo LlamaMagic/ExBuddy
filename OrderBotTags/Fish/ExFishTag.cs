@@ -188,11 +188,6 @@ namespace ExBuddy.OrderBotTags.Fish
 				Keepers = new List<Keeper>();
 			}
 
-			if (MoochFishes == null)
-			{
-				MoochFishes = new List<MoochFish>();
-			}
-
 			if (SurfaceSlaps == null)
 			{
 				SurfaceSlaps = new List<SurfaceSlap>();
@@ -692,15 +687,13 @@ namespace ExBuddy.OrderBotTags.Fish
 		[XmlAttribute("Mooch")]
 		public int MoochLevel { get; set; }
 
+		[DefaultValue(false)]
 		[XmlAttribute("UseMooch2")]
 		public bool UseMooch2 { get; set; }
 
 		[DefaultValue("True")]
 		[XmlAttribute("MoochCondition")]
 		public string MoochCondition { get; set; }
-
-		[XmlElement("MoochFishes")]
-		public List<MoochFish> MoochFishes { get; set; }
 
 		[XmlAttribute("MakeshiftBait")]
 		public bool MakeshiftBait { get; set; }
@@ -735,6 +728,7 @@ namespace ExBuddy.OrderBotTags.Fish
 		[XmlAttribute("IdenticalCast")]
 		public bool IdenticalCast { get; set; }
 
+		[DefaultValue(false)]
 		[XmlAttribute("ThaliaksFavor")]
 		public bool ThaliaksFavor { get; set; }
 
@@ -910,10 +904,8 @@ namespace ExBuddy.OrderBotTags.Fish
 				return
 					new Decorator(
 						ret =>
-							(CanDoAbility(Ability.Mooch) || CanDoAbility(Ability.Mooch2)) && MoochLevel != 0 && mooch < MoochLevel && MoochConditionCheck()
-							&& MoochFishes.Any(s => string.Equals(s.Name, FishResult.FishName, StringComparison.InvariantCultureIgnoreCase))
-							&& (!EnableKeeper
-								|| Keepers.Count == 0
+							(CanDoAbility(Ability.Mooch) || CanDoAbility(Ability.Mooch2)) && MoochConditionCheck() && (MoochLevel != 0 && mooch < MoochLevel) 
+							&& (!EnableKeeper || Keepers.Count == 0
 								|| Keepers.All(k => !string.Equals(k.Name, FishResult.FishName, StringComparison.InvariantCultureIgnoreCase))
 								|| Keepers.Any(k => string.Equals(k.Name, FishResult.FishName, StringComparison.InvariantCultureIgnoreCase)
 								&& FishResult.ShouldMooch(k))),
@@ -921,17 +913,17 @@ namespace ExBuddy.OrderBotTags.Fish
 							new Action(
 								r =>
 								{
-									var moochAbility = UseMooch2 && CanDoAbility(Ability.Mooch2) ? Ability.Mooch2 : Ability.Mooch;
 									checkRelease = true;
+									var moochAbility = UseMooch2 && CanDoAbility(Ability.Mooch2) ? Ability.Mooch2 : Ability.Mooch;
 									DoAbility(moochAbility);
 									mooch++;
 									if (MoochLevel > 1)
 									{
-										Logger.Info(Localization.Localization.ExFish_Mooch, mooch, MoochLevel);
+										Logger.Info(Localization.Localization.ExFish_Mooch, moochAbility.ToString(), mooch, MoochLevel);
 									}
 									else
 									{
-										Logger.Info(Localization.Localization.ExFish_Mooch2);
+										Logger.Info(Localization.Localization.ExFish_Mooch2, moochAbility.ToString());
 									}
 								}),
 							new Sleep(2, 2)));
@@ -977,10 +969,8 @@ namespace ExBuddy.OrderBotTags.Fish
 				return
 					new Decorator(
 						ret =>
-							Patience > Ability.None
-							&& (FishingManager.State == FishingState.None || FishingManager.State == FishingState.PoleReady) && !HasPatience
-							&& CanDoAbility(Patience) &&
-							(ExProfileBehavior.Me.CurrentGP >= MinimumGPPatience || ExProfileBehavior.Me.CurrentGPPercent > 99.0f),
+							Patience > Ability.None && (FishingManager.State == FishingState.None || FishingManager.State == FishingState.PoleReady) && !HasPatience
+							&& CanDoAbility(Patience) && (ExProfileBehavior.Me.CurrentGP >= MinimumGPPatience || ExProfileBehavior.Me.CurrentGPPercent > 99.0f),
 						new Sequence(
 							new Action(
 								r =>
@@ -1088,7 +1078,7 @@ namespace ExBuddy.OrderBotTags.Fish
 									DoAbility(Ability.SurfaceSlap);
 									Logger.Info(Localization.Localization.ExFish_SurfaceSlap, FishResult.FishName);
 								}),
-							new Sleep(2, 2)));
+							new Sleep(2, 3)));
 			}
 		}
 
@@ -1109,7 +1099,7 @@ namespace ExBuddy.OrderBotTags.Fish
 									r =>
 									{
 										// If its not a keeper AND (we aren't mooching OR we can't mooch) AND Keeper is enabled, then release
-										if (!Keepers.Any(FishResult.IsKeeper) && (MoochLevel == 0 || !CanDoAbility(Ability.Mooch)) && EnableKeeper)
+										if (!Keepers.Any(FishResult.IsKeeper) && (MoochLevel == 0 || !CanDoAbility(Ability.Mooch)) && !CanDoAbility(Ability.Mooch2) && EnableKeeper)
 										{
 											DoAbility(Ability.Release);
 											Logger.Info(Localization.Localization.ExFish_Release, FishResult.Name);
@@ -1172,7 +1162,7 @@ namespace ExBuddy.OrderBotTags.Fish
 							else if (!HasPatience && CanDoAbility(Ability.DoubleHook) && DoubleHooks.Any(s => string.Equals(s.TugType, tugType.ToString(), StringComparison.InvariantCultureIgnoreCase)))
 							{
 								DoAbility(Ability.DoubleHook);
-								Logger.Info(Localization.Localization.ExFish_Hook, "Hook", tugType);
+								Logger.Info(Localization.Localization.ExFish_Hook, "Double Hook", tugType);
 							}
 							else
 							{
