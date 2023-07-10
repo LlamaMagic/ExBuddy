@@ -926,7 +926,7 @@ namespace ExBuddy.OrderBotTags.Fish
 										Logger.Info(Localization.Localization.ExFish_Mooch2, moochAbility.ToString());
 									}
 								}),
-							new Sleep(2, 2)));
+							new Sleep(2, 3)));
 			}
 		}
 
