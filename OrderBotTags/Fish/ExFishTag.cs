@@ -945,7 +945,7 @@ namespace ExBuddy.OrderBotTags.Fish
 						DoAbility(Ability.Chum);
 						Logger.Info(Localization.Localization.ExFish_Chum);
 					}
-					), new Sleep(1, 2)));
+					), new Sleep(2, 3)));
 			}
 		}
 
