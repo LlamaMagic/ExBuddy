@@ -193,6 +193,11 @@ namespace ExBuddy.OrderBotTags.Fish
 				SurfaceSlaps = new List<SurfaceSlap>();
 			}
 
+			if (ReverseHooks == null)
+			{
+				ReverseHooks = new List<ReverseHook>();
+			}
+
 			if (DoubleHooks == null)
 			{
 				DoubleHooks = new List<DoubleHook>();
@@ -753,9 +758,8 @@ namespace ExBuddy.OrderBotTags.Fish
 		[XmlElement("TripleHooks")]
 		public List<TripleHook> TripleHooks { get; set; }
 
-		[DefaultValue(false)]
-		[XmlAttribute("HooksetReverse")]
-		public bool HooksetReverse { get; set; }
+		[XmlElement("ReverseHooks")]
+		public List<ReverseHook> ReverseHooks { get; set; }
 
 		#endregion Public Properties
 
@@ -926,7 +930,7 @@ namespace ExBuddy.OrderBotTags.Fish
 										Logger.Info(Localization.Localization.ExFish_Mooch2, moochAbility.ToString());
 									}
 								}),
-							new Sleep(2, 3)));
+							new Sleep(2, 2)));
 			}
 		}
 
@@ -1144,7 +1148,7 @@ namespace ExBuddy.OrderBotTags.Fish
 							var tugType = FishingManager.TugType;
 							var patienceTug = new PatienceTug { MoochLevel = mooch, TugType = tugType };
 							var hookset = tugType == TugType.Light ? Ability.PrecisionHookset : Ability.PowerfulHookset;
-							if (HasPatience && HooksetReverse)
+							if (HasPatience && ReverseHooks.Any(s => string.Equals(s.MoochLevel, mooch)) && ReverseHooks.Any(s => string.Equals(s.TugType, tugType.ToString(), StringComparison.InvariantCultureIgnoreCase)))
 							{
 								hookset = tugType == TugType.Heavy ? Ability.PrecisionHookset : Ability.PowerfulHookset;
 								Logger.Info(Localization.Localization.ExFish_TugType, tugType, hookset);

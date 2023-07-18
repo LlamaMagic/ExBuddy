@@ -206,6 +206,7 @@
     <Compile Include="Interfaces\IGatherSpot.cs" />
     <Compile Include="OrderBotTags\Fish\PatienceTug.cs" />
     <Compile Include="OrderBotTags\Fish\SurfaceSlap.cs" />
+    <Compile Include="OrderBotTags\Fish\ReverseHook.cs" />
     <Compile Include="OrderBotTags\Fish\DoubleHook.cs" />
     <Compile Include="OrderBotTags\Fish\TripleHook.cs" />
     <Compile Include="OrderBotTags\Gather\GatherSpots\GatherSpotCollection.cs" />
