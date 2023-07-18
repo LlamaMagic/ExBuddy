@@ -398,10 +398,6 @@ namespace ExBuddy.OrderBotTags.Fish
 				return false;
 			}
 
-			await Coroutine.Wait(10000, () => CanDoAbility(Ability.Quit));
-			DoAbility(Ability.Quit);
-			isSitting = false;
-
 			await Coroutine.Wait(5000, () => FishingManager.State == FishingState.None);
 
 			if (missingGp >= 430 && (CordialType == CordialType.HiCordial || CordialType == CordialType.Auto) && Cordial.HasHiCordials())
@@ -939,7 +935,8 @@ namespace ExBuddy.OrderBotTags.Fish
 			get
 			{
 				return new Decorator(
-					ret => Chum && !HasChum && CanDoAbility(Ability.Chum),
+					ret => (FishingManager.State == FishingState.None || FishingManager.State == FishingState.PoleReady)
+							&& Chum && !HasChum && CanDoAbility(Ability.Chum),
 					new Sequence(new Action(r => 
 					{
 						DoAbility(Ability.Chum);
