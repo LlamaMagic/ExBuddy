@@ -68,7 +68,6 @@ namespace ExBuddy.OrderBotTags.Fish
 					IdenticalCastComposite,
 					MoochComposite,
 					SurfaceSlapComposite,
-					MakeshiftBaitComposite,
 					FishCountLimitComposite,
 					InventoryFullComposite,
 					SitComposite,
@@ -78,6 +77,7 @@ namespace ExBuddy.OrderBotTags.Fish
 					new ExCoroutineAction(ctx => HandleCordial(), this),
 					PrizeCatchComposite,
 					PatienceComposite,
+					MakeshiftBaitComposite,
 					FishEyesComposite,
 					ChumComposite,
 					CastComposite,
@@ -696,6 +696,7 @@ namespace ExBuddy.OrderBotTags.Fish
 		[XmlAttribute("MoochCondition")]
 		public string MoochCondition { get; set; }
 
+		[DefaultValue(false)]
 		[XmlAttribute("MakeshiftBait")]
 		public bool MakeshiftBait { get; set; }
 
@@ -956,7 +957,7 @@ namespace ExBuddy.OrderBotTags.Fish
 			{
 				return
 					new Decorator(
-						ret => MakeshiftBait && GetAnglersArtStack >= 5 && CanDoAbility(Ability.MakeshiftBait)
+						ret => !HasMakeshiftBait && !HasPatience && MakeshiftBait && GetAnglersArtStack >= 5 && CanDoAbility(Ability.MakeshiftBait)
 							   && (FishingManager.State == FishingState.None || FishingManager.State == FishingState.PoleReady),
 						new Sequence(new Action(r => 
 						{
@@ -974,7 +975,7 @@ namespace ExBuddy.OrderBotTags.Fish
 				return
 					new Decorator(
 						ret =>
-							Patience > Ability.None && (FishingManager.State == FishingState.None || FishingManager.State == FishingState.PoleReady) && !HasPatience
+							Patience > Ability.None && (FishingManager.State == FishingState.None || FishingManager.State == FishingState.PoleReady) && !HasPatience && !HasMakeshiftBait
 							&& CanDoAbility(Patience) && (ExProfileBehavior.Me.CurrentGP >= MinimumGPPatience || ExProfileBehavior.Me.CurrentGPPercent > 99.0f),
 						new Sequence(
 							new Action(
