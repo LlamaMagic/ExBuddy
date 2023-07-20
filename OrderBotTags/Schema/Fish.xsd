@@ -67,6 +67,7 @@
 			<xs:attribute name="maximumGPThaliaksFavor" type="xs:int"></xs:attribute>
 			<xs:attribute name="thaliaksFavorThreshold" type="xs:int"></xs:attribute>
 			<xs:attribute name="makeshiftBait" type="xs:boolean"></xs:attribute>
+			<xs:attribute name="MakeshiftBaitForce" type="xs:boolean"></xs:attribute>
 			<xs:attribute name="prizeCatch" type="xs:boolean"></xs:attribute>
 		</xs:complexType>
 	</xs:element>
