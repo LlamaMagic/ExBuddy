@@ -913,7 +913,7 @@ namespace ExBuddy.OrderBotTags.Fish
 				return
 					new Decorator(
 						ret =>
-							(CanDoAbility(Ability.Mooch) || CanDoAbility(Ability.Mooch2)) && MoochConditionCheck() && (MoochLevel != 0 && mooch < MoochLevel) 
+							(CanDoAbility(Ability.Mooch) || CanDoAbility(Ability.Mooch2)) && MoochConditionCheck() && (MoochLevel != 0 && mooch < MoochLevel)
 							&& (!EnableKeeper || Keepers.Count == 0
 								|| Keepers.All(k => !string.Equals(k.Name, FishResult.FishName, StringComparison.InvariantCultureIgnoreCase))
 								|| Keepers.Any(k => string.Equals(k.Name, FishResult.FishName, StringComparison.InvariantCultureIgnoreCase) && FishResult.ShouldMooch(k))),
@@ -945,7 +945,7 @@ namespace ExBuddy.OrderBotTags.Fish
 				return new Decorator(
 					ret => (FishingManager.State == FishingState.None || FishingManager.State == FishingState.PoleReady)
 							&& Chum && !HasChum && CanDoAbility(Ability.Chum),
-					new Sequence(new Action(r => 
+					new Sequence(new Action(r =>
 					{
 						DoAbility(Ability.Chum);
 						Logger.Info(Localization.Localization.ExFish_Chum);
@@ -963,7 +963,7 @@ namespace ExBuddy.OrderBotTags.Fish
 						ret => !HasMakeshiftBait && !HasPatience && MakeshiftBait && GetAnglersArtStack >= 5
 							   && CanDoAbility(Ability.MakeshiftBait) && (mooch > 0 || MakeshiftBaitForce)
 							   && (FishingManager.State == FishingState.None || FishingManager.State == FishingState.PoleReady),
-						new Sequence(new Action(r => 
+						new Sequence(new Action(r =>
 						{
 							DoAbility(Ability.MakeshiftBait);
 							Logger.Info(Localization.Localization.ExFish_MakeshiftBait);
@@ -1002,7 +1002,7 @@ namespace ExBuddy.OrderBotTags.Fish
 						ret => ThaliaksFavor && GetAnglersArtStack >= ThaliaksFavorThreshold && CanDoAbility(Ability.ThaliaksFavor)
 							   && (ExProfileBehavior.Me.CurrentGP <= MaximumGPThaliaksFavor || (ExProfileBehavior.Me.MaxGP - ExProfileBehavior.Me.CurrentGP) > 200)
 							   && (FishingManager.State == FishingState.None || FishingManager.State == FishingState.PoleReady),
-						new Sequence(new Action(r => 
+						new Sequence(new Action(r =>
 						{
 							DoAbility(Ability.ThaliaksFavor);
 							Logger.Info(Localization.Localization.ExFish_ThaliaksFavor, GetAnglersArtStack - 3);
@@ -1018,7 +1018,7 @@ namespace ExBuddy.OrderBotTags.Fish
 				return
 					new Decorator(
 						ret => PrizeCatch && !HasPrizeCatch && ExProfileBehavior.Me.CurrentGP <= MinimumGPPrizeCatch && CanDoAbility(Ability.PrizeCatch),
-						new Sequence(new Action(r => 
+						new Sequence(new Action(r =>
 						{
 							DoAbility(Ability.PrizeCatch);
 							Logger.Info(Localization.Localization.ExFish_PrizeCatch);
@@ -1077,7 +1077,7 @@ namespace ExBuddy.OrderBotTags.Fish
 			{
 				return
 					new Decorator(
-						ret => 
+						ret =>
 							EnableSurfaceSlap && FishingManager.State == FishingState.PoleReady && CanDoAbility(Ability.SurfaceSlap)
 							&& (ExProfileBehavior.Me.CurrentGP >= MinimumGPSurfaceSlap || ExProfileBehavior.Me.CurrentGPPercent > 99.0f)
 							&& (MoochLevel == 0 || !CanDoAbility(Ability.Mooch))
@@ -1155,7 +1155,7 @@ namespace ExBuddy.OrderBotTags.Fish
 							var tugType = FishingManager.TugType;
 							var patienceTug = new PatienceTug { MoochLevel = mooch, TugType = tugType };
 							var hookset = tugType == TugType.Light ? Ability.PrecisionHookset : Ability.PowerfulHookset;
-							if (HasPatience && ReverseHooks.Any(r => (r.MoochLevel == mooch) && (string.Equals(r.TugType, tugType.ToString(), StringComparison.InvariantCultureIgnoreCase))))
+							if (HasPatience && ReverseHooks.Any(t => (t.MoochLevel == mooch) && (string.Equals(t.TugType, tugType.ToString(), StringComparison.InvariantCultureIgnoreCase))))
 							{
 								hookset = tugType == TugType.Heavy ? Ability.PrecisionHookset : Ability.PowerfulHookset;
 								Logger.Info(Localization.Localization.ExFish_TugType, tugType, hookset);

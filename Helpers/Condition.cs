@@ -30,11 +30,14 @@
 
             AddNamespacesToScriptManager("ExBuddy", "ExBuddy.Helpers");
 
-            RebornBuddyTitle = MainWpf.current.Title;
+            if (MainWpf.current != null)
+            {
+                RebornBuddyTitle = MainWpf.current.Title;
 
-            GameEvents.OnMapChanged += SetPlayerNameInWindowTitle;
+                GameEvents.OnMapChanged += SetPlayerNameInWindowTitle;
 
-            SetPlayerNameInWindowTitle(null, EventArgs.Empty);
+                SetPlayerNameInWindowTitle(null, EventArgs.Empty);
+            }
         }
 
         public static bool All(params object[] param)
