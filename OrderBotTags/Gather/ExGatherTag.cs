@@ -691,11 +691,17 @@
                 return false;
             }
 
+            int retryCount = 0;
+
+            RetryGoto:
             var result = FindGatherSpot() || await GatherSequence();
 
-            if (!result)
+            if (result == false && retryCount <= 3)
             {
-                Poi.Clear(Localization.Localization.ExGather_ExecutePoiLogic);
+                retryCount++;
+                Logger.Info($"ExecutePoiLogic result was false. Revisit popped? Try #{retryCount}. Waiting...");
+                await Coroutine.Wait(5000, () => ExProfileBehavior.Me.InCombat || ActionManager.CanMount == 0 || SwingsRemaining > 0);
+                goto RetryGoto;
             }
 
             if (Poi.Current.Type == PoiType.Gather && (!Poi.Current.Unit.IsValid || !Poi.Current.Unit.IsVisible))
