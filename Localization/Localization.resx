@@ -121,7 +121,7 @@
     <value>Unable to resolve cordial data, if this continues, please report logs to ExMatt.</value>
   </data>
   <data name="EnableFlight_PluginName" xml:space="preserve">
-    <value>Enable Flight</value>
+    <value>Do Not Enable - Does Nothing</value>
   </data>
   <data name="ExCompanyChestDeposit_Timeout" xml:space="preserve">
     <value>Timeout while depositing items into free company chest.</value>
