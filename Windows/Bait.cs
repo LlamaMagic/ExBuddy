@@ -8,7 +8,9 @@
     public sealed class Bait : Window<Bait>
     {
         public Bait()
-            : base("Bait") { }
+            : base("Bait")
+        {
+        }
 
         public async Task<bool> SelectBait(
             uint baitId,
@@ -26,7 +28,7 @@
             var result = SendActionResult.None;
             var attempts = 0;
             while ((result != SendActionResult.Success || FishingManager.SelectedBaitItemId != baitId) && attempts++ < 3
-                   && Behaviors.ShouldContinue)
+                                                                                                       && Behaviors.ShouldContinue)
             {
                 result = SetBait(baitId);
                 if (result == SendActionResult.InjectionError)
@@ -47,7 +49,11 @@
 
         public SendActionResult SetBait(uint baitId)
         {
+#if !RB_DT
             return Control.TrySendAction(4, 0, 0, 0, 0, 0, 0, 1, baitId);
+#else
+            					return Control.TrySendAction(1, 1, baitId);
+#endif
         }
     }
 }
